@@ -169,6 +169,117 @@ export class SoundEngine {
     osc.stop(now + 0.4);
   }
 
+  // Crunchy eating / chomping sound
+  playChomp() {
+    this.init();
+    if (this.isMuted || !this.ctx) return;
+
+    const ctx = this.ctx;
+    // 3 quick bites: "chomp chomp chomp!"
+    [0, 0.12, 0.25].forEach((delay, idx) => {
+      setTimeout(() => {
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+
+        // Crunchy bite snap
+        const bufferSize = ctx.sampleRate * 0.04;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.15));
+        }
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = noiseBuffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1400 - idx * 150, now);
+        filter.Q.setValueAtTime(2.5, now);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.55, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        noise.start(now);
+        noise.stop(now + 0.06);
+
+        // Low mouth gulp tone
+        const osc = ctx.createOscillator();
+        const oscGain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(160 - idx * 10, now);
+        osc.frequency.exponentialRampToValueAtTime(60, now + 0.06);
+
+        oscGain.gain.setValueAtTime(0.4, now);
+        oscGain.gain.exponentialRampToValueAtTime(0.01, now + 0.07);
+
+        osc.connect(oscGain);
+        oscGain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      }, delay * 1000);
+    });
+  }
+
+  // Cute baby dino giggle
+  playGiggle() {
+    this.init();
+    if (this.isMuted || !this.ctx) return;
+
+    const ctx = this.ctx;
+    const pitches = [440, 554, 659, 880];
+    pitches.forEach((freq, idx) => {
+      setTimeout(() => {
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.3, now + 0.08);
+
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.12);
+      }, idx * 70);
+    });
+  }
+
+  // Whoosh for food flight
+  playWhoosh() {
+    this.init();
+    if (this.isMuted || !this.ctx) return;
+
+    const ctx = this.ctx;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(280, now);
+    osc.frequency.exponentialRampToValueAtTime(560, now + 0.15);
+
+    gain.gain.setValueAtTime(0.18, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.2);
+  }
+
   toggleMute() {
     this.isMuted = !this.isMuted;
     return this.isMuted;

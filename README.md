@@ -1,31 +1,29 @@
-# 🎈 Pop & Match Balloon Meadow
+# 🎈 Toddler Playland 🦖
 
-A modern web-based toddler learning game built with **React** and **Vite** for fun, color recognition, and hand-eye coordination.
+A joyful suite of web-based learning games built with **React** and **Vite** for toddlers and preschoolers (Ages 1.5 - 4).
 
-> **Credits:** Developed with ❤️ by **Dhruv & Dhriti**
+> **Credits:** Proudly developed with ❤️ by **Dhruv & Dhriti**
 
 ---
 
-## 🌟 Key Features for Toddlers (Ages 1.5 - 3.5)
+## 🎮 Included Games
 
-1. **Zero-Fail State:**
-   - No "Game Over", no penalty timers, and no buzzers.
-   - Popping *any* balloon brings joy, sounds a melodic pentatonic chime, shoots confetti, and announces the color name.
-2. **Two Game Modes:**
-   - 🎈 **Free Pop Mode:** Pure sensory cause-and-effect. Balloons float gently upward; toddlers can tap anywhere to pop balloons and hear musical notes.
-   - 🎯 **Color Quest Mode:** A cheerful audio prompt asks to find a specific color (e.g., *"Can you find the Yellow balloon?"*). The target balloon has a gentle glowing halo. Tapping the target plays a celebration fanfare!
-3. **Designed for Little Hands:**
-   - **Multi-Touch Support:** Toddlers often touch screens with their whole palm or multiple fingers. All touch points register simultaneously.
-   - **Oversized Hitboxes:** Balloons and swinging strings feature generous touch detection (+28px margin) so taps never miss.
-   - **Keyboard Bash Support:** Pressing any key on a laptop or desktop pops balloons—great for toddlers mimicking parents on a keyboard!
-4. **Rich Visuals & Variety:**
-   - 4 cute balloon shapes: Classic Oval, Bear Ears 🐻, Sweet Heart 💖, and Star ⭐.
-   - Kawaii smiling faces, glossy shine highlights, and swaying strings.
-   - Interactive background: Tap the smiling sun ☀️ to make it spin and boing!
-5. **100% Offline-Ready & Asset-Free:**
-   - **Web Audio API:** Synthesizes balloon pops, pentatonic xylophone chimes, and celebration fanfares dynamically.
-   - **Web Speech API:** Announces color names and positive encouragement in real-time.
-   - **Canvas Particle Physics:** Generates multi-color confetti ribbons, shockwave rings, and golden sparkle stars.
+### 1. 🎈 Pop & Match Balloon Meadow
+* **Learning Focus:** Color recognition, audio-visual association, hand-eye coordination.
+* **Modes:**
+  * **Free Pop:** Sensory cause-and-effect with realistic pops, pentatonic xylophone chimes, and floating confetti.
+  * **Color Quest:** A friendly voice asks toddlers to find a specific color balloon with glowing star guidance.
+* **Key Features:** Multi-touch support, keyboard bash support, 4 cute balloon shapes (Oval, Bear 🐻, Heart 💖, Star ⭐), and an interactive smiling sun!
+
+### 2. 🦖 Hungry Dino: Shapes & Colors Feast (New!)
+* **Learning Focus:** Shape identification, color matching, categorization, fine motor skills.
+* **The Character:** Cartoon realistic 3D-shaded baby Dino (Rexy) with expressive animated eyes, wagging tail, breathing cycle, and animated jaws.
+* **How to Play:**
+  * Rexy asks for snacks with both a speech prompt and thought bubble: *"Feed me a Red Circle!"* or *"I want a Yellow Star!"*
+  * Toddlers can tap or drag tasty shaped cookies, watermelon triangles, waffles, and star fruits from the bottom shelf.
+  * When fed the right food, Rexy munches down with realistic chomping sounds (*"Nom nom nom!"*), blushes with happiness, and bursts with hearts!
+  * Zero-fail design: if a different snack is fed, Rexy takes a gentle taste and kindly repeats what he is craving without negative buzzers.
+  * **Tummy Meter:** Fills up with 5 snacks to trigger a celebration dance and fanfare!
 
 ---
 
@@ -35,7 +33,7 @@ A modern web-based toddler learning game built with **React** and **Vite** for f
 ```bash
 npm run dev
 ```
-Open **`http://localhost:3000`** in your browser.
+Open **`http://localhost:3000`** in your browser to launch the games portal.
 
 ### Build for Production
 ```bash
@@ -53,7 +51,7 @@ npm run preview
 
 - **React 19** + **Vite**
 - **Lucide React** (icons)
-- **Web Audio API** (sound synthesis)
-- **Web Speech API** (speech synthesis)
-- **HTML5 Canvas** (high-performance 60 FPS animation & physics)
-- **Credits:** Dedicated credits badge on screen and within parent settings modal by **Dhruv & Dhriti**.
+- **Web Audio API** (100% synthesized acoustic pops, chimes, chomps, dinosaur giggles, and celebration fanfares)
+- **Web Speech API** (cheery voice prompts for colors and shapes)
+- **HTML5 Canvas** (60 FPS procedural character animation and confetti physics)
+- **Credits:** Dedicated credits displayed on the landing page, bottom badge, and within settings drawers by **Dhruv & Dhriti**.

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Settings, Maximize2, Minimize2, Sparkles, Target } from 'lucide-react';
+import { Home, Settings, Maximize2, Minimize2, Sparkles, Target } from 'lucide-react';
 import { QuestBanner } from './QuestBanner';
 import { StarJar } from './StarJar';
 
 export const HUD = ({
+  onBackToHome,
   mode,
   onModeChange,
   targetColor,
@@ -16,6 +17,18 @@ export const HUD = ({
   return (
     <header className="hud-container">
       <div className="hud-left">
+        {onBackToHome && (
+          <button
+            className="home-nav-btn"
+            onClick={onBackToHome}
+            title="Back to All Games"
+            aria-label="Back to All Games"
+          >
+            <Home size={20} />
+            <span>Games</span>
+          </button>
+        )}
+
         <nav className="mode-switcher" aria-label="Game Modes">
           <button
             className={`mode-btn ${mode === 'free' ? 'active' : ''}`}

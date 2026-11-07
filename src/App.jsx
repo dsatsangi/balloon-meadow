@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { LandingPage } from './components/LandingPage';
 import { HUD } from './components/HUD';
 import { BalloonCanvas } from './components/BalloonCanvas';
 import { SettingsModal } from './components/SettingsModal';
 import { CreditsBadge } from './components/CreditsBadge';
+import { DinoGame } from './games/dino/DinoGame';
 import { BALLOON_COLORS } from './engine/Balloon';
 import { soundEngine } from './engine/SoundEngine';
 import { speechEngine } from './engine/SpeechEngine';
 
 export const App = () => {
+  // Navigation: 'home' | 'balloon-meadow' | 'hungry-dino'
+  const [currentView, setCurrentView] = useState('home');
+
+  // Balloon game state
   const [mode, setMode] = useState('free');
   const [speed, setSpeed] = useState('slow');
   const [voiceEnabled, setVoiceEnabled] = useState(true);
@@ -100,10 +106,38 @@ export const App = () => {
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
   }, []);
 
+  // 1. Landing Page View
+  if (currentView === 'home') {
+    return (
+      <LandingPage
+        onSelectGame={(gameId) => setCurrentView(gameId)}
+        isFullscreen={isFullscreen}
+        onToggleFullscreen={toggleFullscreen}
+        soundEnabled={soundEnabled}
+        onToggleSound={toggleSound}
+        voiceEnabled={voiceEnabled}
+        onToggleVoice={toggleVoice}
+      />
+    );
+  }
+
+  // 2. Hungry Dino Game View
+  if (currentView === 'hungry-dino') {
+    return (
+      <DinoGame
+        onBackToHome={() => setCurrentView('home')}
+        isFullscreen={isFullscreen}
+        onToggleFullscreen={toggleFullscreen}
+      />
+    );
+  }
+
+  // 3. Balloon Meadow Game View
   return (
     <div className="game-container">
       {/* Top HUD */}
       <HUD
+        onBackToHome={() => setCurrentView('home')}
         mode={mode}
         onModeChange={handleModeChange}
         targetColor={targetColor}

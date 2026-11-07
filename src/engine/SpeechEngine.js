@@ -82,6 +82,32 @@ export class SpeechEngine {
     this.speak(phrase, true);
   }
 
+  speakDinoPrompt(colorName, shapeName) {
+    const prompts = [
+      `Feed me a ${colorName} ${shapeName}!`,
+      `I want a ${colorName} ${shapeName}, please!`,
+      `My tummy wants a ${colorName} ${shapeName}!`,
+      `Can I eat the ${colorName} ${shapeName}?`
+    ];
+    const phrase = prompts[Math.floor(Math.random() * prompts.length)];
+    this.speak(phrase, true);
+  }
+
+  speakDinoMunch() {
+    const praises = [
+      'Yum yum! So yummy!',
+      'Delicious! Thank you!',
+      'Nom nom nom! That was delicious!',
+      'Mmm! My tummy is happy!'
+    ];
+    const phrase = praises[Math.floor(Math.random() * praises.length)];
+    this.speak(phrase, true);
+  }
+
+  speakDinoGentleRedirect(fedColor, fedShape, wantedColor, wantedShape) {
+    this.speak(`Mmm, that's a ${fedColor} ${fedShape}! But I'm hungry for a ${wantedColor} ${wantedShape}!`, true);
+  }
+
   toggleSpeech() {
     this.isEnabled = !this.isEnabled;
     if (!this.isEnabled && this.synth) {
